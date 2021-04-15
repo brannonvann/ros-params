@@ -29,8 +29,7 @@ note: the common is loaded in to the node's namespace under the namespace of loc
         <rosparam file="$(find PACKAGE_NAME_HERE)/params/costmap_common.yaml" command="load" ns="local_costmap" />
         <rosparam file="$(find PACKAGE_NAME_HERE)/params/local_costmap.yaml" command="load" />
         <rosparam file="$(find PACKAGE_NAME_HERE)/params/global_costmap.yaml" command="load" />
-        <rosparam file="$(find PACKAGE_NAME_HERE)/params/local_planner.yaml" command="load" />
-        <rosparam file="$(find PACKAGE_NAME_HERE)/params/global_planner.yaml" command="load" />
+        <rosparam file="$(find PACKAGE_NAME_HERE)/params/move_base.yaml" command="load" />
     </node>
 </launch>
 ```
