@@ -2,7 +2,7 @@
 
 #base_global_planner: "navfn/NavfnROS" For 1.1+ series # Default: "navfn/NavfnROS" For 1.1+ series The name of the plugin for the global planner to use with move_base, see pluginlib documentation for more details on plugins. This plugin must adhere to the nav_core::BaseGlobalPlanner interface specified in the nav_core package. (1.0 series default: "NavfnROS")
 #***common options for base_local_planner: "base_local_planner/TrajectoryPlannerROS", "dwa_local_planner/DWAPlannerROS", "carrot_planner/CarrotPlanner"
-#base_local_planner: "base_local_planner/TrajectoryPlannerROS" For 1.1+ series # Default: "base_local_planner/TrajectoryPlannerROS" For 1.1+ series The name of the plugin for the local planner to use with move_base see pluginlib documentation for more details on plugins. This plugin must adhere to the nav_core::BaseLocalPlanner interface specified in the nav_core package. (1.0 series default: "TrajectoryPlannerROS")
+base_local_planner: 'dwa_local_planner/DWAPlannerROS' # Default: "base_local_planner/TrajectoryPlannerROS" For 1.1+ series The name of the plugin for the local planner to use with move_base see pluginlib documentation for more details on plugins. This plugin must adhere to the nav_core::BaseLocalPlanner interface specified in the nav_core package. (1.0 series default: "TrajectoryPlannerROS")
 #recovery_behaviors: [{name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery}, {name: rotate_recovery, type: rotate_recovery/RotateRecovery}, {name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery}] For 1.1+ series # Default: [{name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery}, {name: rotate_recovery, type: rotate_recovery/RotateRecovery}, {name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery}] For 1.1+ series A list of recovery behavior plugins to use with move_base, see pluginlib documentation for more details on plugins. These behaviors will be run when move_base fails to find a valid plan in the order that they are specified. After each behavior completes, move_base will attempt to make a plan. If planning is successful, move_base will continue normal operation. Otherwise, the next recovery behavior in the list will be executed. These plugins must adhere to the nav_core::RecoveryBehavior interface specified in the nav_core package. (1.0 series default: [{name: conservative_reset, type: ClearCostmapRecovery}, {name: rotate_recovery, type: RotateRecovery}, {name: aggressive_reset, type: ClearCostmapRecovery}]). Note: For the default parameters, the aggressive_reset behavior will clear out to a distance of 4 * ~/local_costmap/circumscribed_radius.
 #controller_frequency: 20.0 # Default: 20.0 The rate in Hz at which to run the control loop and send velocity commands to the base.
 #planner_patience: 5.0 # Default: 5.0 How long the planner will wait in seconds in an attempt to find a valid plan before space-clearing operations are performed.
@@ -27,8 +27,8 @@ DWAPlannerROS:
   #min_vel_trans: 0.1 # Default: 0.1 The absolute value of the minimum translational velocity for the robot in m/s
   #max_vel_x: 0.55 # Default: 0.55 The maximum x velocity for the robot in m/s.
   #min_vel_x: 0.0 # Default: 0.0 The minimum x velocity for the robot in m/s, negative for backwards motion.
-  #max_vel_y: 0.1 # Default: 0.1 The maximum y velocity for the robot in m/s
-  #min_vel_y: -0.1 # Default: -0.1 The minimum y velocity for the robot in m/s
+  max_vel_y: 0.0 # Default: 0.1 The maximum y velocity for the robot in m/s
+  min_vel_y: 0.0 # Default: -0.1 The minimum y velocity for the robot in m/s
   #max_rot_vel: 1.0 # Default: 1.0 The absolute value of the maximum rotational velocity for the robot in rad/s
   #min_rot_vel: 0.4 # Default: 0.4 The absolute value of the minimum rotational velocity for the robot in rad/s
 
@@ -38,11 +38,11 @@ DWAPlannerROS:
   #latch_xy_goal_tolerance: false # Default: false If goal tolerance is latched, if the robot ever reaches the goal xy location it will simply rotate in place, even if it ends up outside the goal tolerance while it is doing so.
 
   ### Forward Simulation Parameters
-  #sim_time: 1.7 # Default: 1.7 The amount of time to forward-simulate trajectories in seconds
+  sim_time: 4.0 # Default: 1.7 The amount of time to forward-simulate trajectories in seconds
   #sim_granularity: 0.025 # Default: 0.025 The step size, in meters, to take between points on a given trajectory
-  #vx_samples: 3 # Default: 3 The number of samples to use when exploring the x velocity space
-  #vy_samples: 10 # Default: 10 The number of samples to use when exploring the y velocity space
-  #vth_samples: 20 # Default: 20 The number of samples to use when exploring the theta velocity space
+  vx_samples: 20 # Default: 3 The number of samples to use when exploring the x velocity space
+  vy_samples: 0 # Default: 10 The number of samples to use when exploring the y velocity space
+  vth_samples: 40 # Default: 20 The number of samples to use when exploring the theta velocity space
   #controller_frequency: 20.0 # Default: 20.0 The frequency at which this controller will be called in Hz. Uses searchParam to read the parameter from parent namespaces if not set in the namespace of the controller. For use with move_base, this means that you only need to set its "controller_frequency" parameter and can safely leave this one unset.
 
   ### Trajectory Scoring Parameters
@@ -74,7 +74,7 @@ TrajectoryPlannerROS:
   #acc_lim_x: 2.5 # Default: 2.5 The x acceleration limit of the robot in meters/sec^2
   #acc_lim_y: 2.5 # Default: 2.5 The y acceleration limit of the robot in meters/sec^2
   #acc_lim_theta: 3.2 # Default: 3.2 The rotational acceleration limit of the robot in radians/sec^2
-  max_vel_x: 0.75 # Default: 0.5 The maximum forward velocity allowed for the base in meters/sec
+  #max_vel_x: 0.5 # Default: 0.5 The maximum forward velocity allowed for the base in meters/sec
   #min_vel_x: 0.1 # Default: 0.1 The minimum forward velocity allowed for the base in meters/sec. It is useful to specify this to guarantee that velocity commands sent to a mobile base are high enough to allow the base to overcome friction.
   #max_vel_theta: 1.0 # Default: 1.0 The maximum rotational velocity allowed for the base in radians/sec
   #min_vel_theta: -1.0 # Default: -1.0 The minimum rotational velocity allowed for the base in radians/sec
