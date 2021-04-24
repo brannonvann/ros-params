@@ -1,8 +1,8 @@
 # ros-params
 
-This repo contains a set of ROS default yaml parameter files to be used with a ROS robot.
+This repo contains a set of ROS default yaml parameter files to be used with a ROS robot. The intent is to include all options, their defaults, and the description of the options to make it easier to see the options that are available. In some cases the standard default is replaced by recommendations made from reputable sources.
 
-Download these yaml files and adjust as needed.
+Download these yaml files and adjust as needed. You can use clone this repo, download or use wget to pull the files you need. Example: `wget https://raw.githubusercontent.com/brannonvann/ros-params/master/move_base.yaml`
 
 To use the parameter files, make sure your launch file is pointing to the correct location.
 
@@ -34,6 +34,6 @@ note: the common is loaded in to the node's namespace under the namespace of loc
 </launch>
 ```
 
-References:
+## References
 
-Those mentioned in the files and [Kaiyu Zheng's ROS Navigation Tuninig Guide](https://kaiyuzheng.me/documents/navguide.pdf)
+Much of the text comes directly from the documentation available at ros.org for each package. Other sources are mentioned in the files. I also referenced [Kaiyu Zheng's ROS Navigation Tuninig Guide](https://kaiyuzheng.me/documents/navguide.pdf).
