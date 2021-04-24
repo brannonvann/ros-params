@@ -1,4 +1,7 @@
+# Configuration for move base: base local and global planners
 # http://wiki.ros.org/move_base
+
+# Template source: https://github.com/brannonvann/ros-params
 
 #base_global_planner: "navfn/NavfnROS" For 1.1+ series # Default: "navfn/NavfnROS" For 1.1+ series The name of the plugin for the global planner to use with move_base, see pluginlib documentation for more details on plugins. This plugin must adhere to the nav_core::BaseGlobalPlanner interface specified in the nav_core package. (1.0 series default: "NavfnROS")
 #***common options for base_local_planner: "base_local_planner/TrajectoryPlannerROS", "dwa_local_planner/DWAPlannerROS", "carrot_planner/CarrotPlanner"

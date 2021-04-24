@@ -1,4 +1,8 @@
+# Configuration for amcl
 # http://wiki.ros.org/amcl
+
+# Template source: https://github.com/brannonvann/ros-params
+
 # Publish scans from best pose at a max of 10 Hz -->
 
 ### General AMCL parameters ###

@@ -1,5 +1,9 @@
+#configuration specific for the global costmap.
+# http://wiki.ros.org/costmap_2d/
+
+# Template source: https://github.com/brannonvann/ros-params
+
 global_costmap:
-  # http://wiki.ros.org/costmap_2d/
   # Hydro and later releases use plugins for all costmap_2d layers. If you don't provide a plugins parameter then the initialization code will assume that your configuration is pre-Hydro and will load a default set of plugins with default namespaces. Your parameters will be moved to the new namespaces automagically. The default namespaces are static_layer, obstacle_layer and inflation_layer.
   _: this here to maintain format
   static_map: true #global is generated so this should be true unless using gmapping and generating the map on the fly.

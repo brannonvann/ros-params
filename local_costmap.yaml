@@ -1,4 +1,7 @@
 #configuration specific for the local costmap.
+# http://wiki.ros.org/costmap_2d/
+
+# Template source: https://github.com/brannonvann/ros-params
 
 local_costmap:
   # http://wiki.ros.org/costmap_2d/
